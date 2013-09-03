@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="chapter-3">Chapter 3</h1>
+<h2 id="random-graphsp.-46">Random Graphs(p. 46)</h2>
+<ul>
+<li><p>Large graph study -&gt; graphs + statistics. Like the move from classical to statistical mechanics</p></li>
+<li><p>Abstract, but convenient mathematically and guide in useful in many situations.</p></li>
+</ul>
+<p><em>What are these?</em> <em>How are they useful in other applications?</em></p>
+<h2 id="gnp-model">G(n,p) model</h2>
+<p>n = number of vertices p = edge probability</p>
+<p>Between each pair of vertices, the edge is present with probability p. P is often a function, like p = d/n</p>
+<p>A &quot;giant component&quot; emerges even though all edges are statistically independent.</p>
+<h2 id="degree-distribution">Degree Distribution</h2>
+<p>The number of vertices of given degree.</p>
+<p>In G(n,p) the degree of each vertex is the sum of n-1 independent random variables -&gt; binomial distribution.</p>
+<p><em>Since n is large, using n instead of (n-1) for simplicity.</em></p>
+<h3 id="p.-48">p. 48</h3>
+<p>Binomial distribution for G(n, 1/2). Mean = n/2, variance = n/4. Behaves like a normal distribution near the mean. Can also model general degree distribution for G(n, p) as binomial.</p>
+<p>Binomial distribution falls off exponentially fast away from the mean. Most real world graphs are not like this.</p>
+<p>Many follow the power law:</p>
+<p><span class="math">\[Number of degree k vertices = c * \frac{n}{k^r}\]</span></p>
+<p>Where r is often just less than 3</p>
+<p><strong>Theorem 3.1</strong> Consider the probability of a given edge existing as following the Bernoulli distribution. For a vertex, the degree is the sum of n-1 independent Bernoulli random variables.</p>
+<p>We can use Chernoff bounds to bound the probability that a given vertex will deviate from expected degree, np, by too much. Use the union bound when looking at all vertices.</p>
+<h3 id="p.-50">p. 50</h3>
+<p>In many real applications, use p = d/n where d is constant so that expected degree is d even as n increases. As n goes to infinity, can use Poisson distribution as an approximation.</p>
+<h2 id="existence-of-triangles-in-gndn-p.51">Existence of Triangles in G(n,d/n) (p.51)</h2>
+<p><em>What are triangles in G(n, d/n)?</em> 3 vertices connected by edges.</p>
+<p>For G(n, d/n), the number of triples of vertices grows as n^3, but the probability of an edge between two specific vertices goes down linearly with n. The probability of edges between three vertices in a triple is proportional to:</p>
+<p><span class="math">\[\frac{1}{n^3}\]</span></p>
+<p>So the growth in triples of vertices is cancelled out. There are: <span class="math">\({n \choose 3}\)</span> triples for n vertices.</p>
+<p>If the probability of an edge is: <span class="math">\(\frac{d}{n}\)</span> the probability of a triangle is: <span class="math">\(\left(\frac{d}{n}\right)^3\)</span> and the resulting expected number of triangles is: <span class="math">\[{n \choose 3}\left(\frac{d}{n}\right)^3 = \frac{d^3}{6}\]</span></p>
+<p>It is possible for a graph of size n to have no triangles, and it is possible to derive the probablity that this will(not) happen(p.52).</p>
+<h2 id="phase-transitions">Phase Transitions</h2>
+<p>Analogous to abrupt changes in physical materials. These happen when p reaches 1/n (cycles form) and at log(n)/n (disappearance of isolated vertices). The &quot;giant component&quot; also emerges at d = 1.</p>
+<p>What is a <em>threshold</em>?</p>
+<p>If there exists a function p(n) such that when <span class="math">\(\lim_{n \to \infty}\frac{p_1(n)}{p(n)} = 0\)</span> and <span class="math">\(G(n, p_1(n))\)</span> does not have a certain property, but when <span class="math">\(\lim_{n \to \infty}\frac{p_2(n)}{p(n)} = 0\)</span> and <span class="math">\(G(n, p_2(n))\)</span> does have a certain property, then we say that a <em>phase transition</em> occurs and p(n) is the <em>threshold</em>.</p>
+<p>The existence of a giant component has a <em>sharp threshold</em> at <span class="math">\(1/n\)</span>.</p>
+<p><em>First moment method</em> follows from Markov inequality. If the expected number of occurrence of an item in a graph goes to zero, the probability that the number of occurrences is onre ore more in a randomly selected graph also goes to zero.</p>
+<p><em>The opposite is not true about the expected value of x(n) going to infinity meaning that a randomly chosen graph will likely have an item</em>. i.e., there could be a large number of occurrences in a vanishingly small number of graphs. This can be shown using the <em>second moment method</em> and Chebyshev inequality.</p>
+<h2 id="threshold-for-graph-diameter-two">Threshold for graph diameter two</h2>
+<p><em>Diameter</em> - The maximum length of the shortest path between a pair of nodes.</p>
+<p><strong>Theorem 3.5</strong> The property that G(n,p) has diameter two has a sharp threshold at <span class="math">\(p=\sqrt{2}\sqrt{\frac{ln(n)}{n}}\)</span>.</p>
+<p>The expected value, <span class="math">\(E(x) \approx \frac{1}{2}n^{2-c^2}\)</span>.</p>
+<p>So, when <span class="math">\(c &gt; \sqrt{2}\)</span>, <span class="math">\(\lim_{n \to \infty} E(x) = 0\)</span> and when <span class="math">\(c &lt; \sqrt{2}\)</span>, <span class="math">\(\lim_{n \to \infty} E(X) = \infty\)</span></p>
+<h2 id="transitions">Transitions</h2>
+<p>Branching Processes</p>
+<p>Nonuniform and Growth Models of Random Graphs</p>
+<p>Growth Models</p>
+<p>Small World Graphs</p>
+</body>
+</html>
