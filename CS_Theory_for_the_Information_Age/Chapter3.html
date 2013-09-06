@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="file:///Users/dcartoon/Code/Github/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
 <h1 id="chapter-3">Chapter 3</h1>
@@ -53,10 +53,27 @@
 <p><strong>Theorem 3.5</strong> The property that G(n,p) has diameter two has a sharp threshold at <span class="math">\(p=\sqrt{2}\sqrt{\frac{ln(n)}{n}}\)</span>.</p>
 <p>The expected value, <span class="math">\(E(x) \approx \frac{1}{2}n^{2-c^2}\)</span>.</p>
 <p>So, when <span class="math">\(c &gt; \sqrt{2}\)</span>, <span class="math">\(\lim_{n \to \infty} E(x) = 0\)</span> and when <span class="math">\(c &lt; \sqrt{2}\)</span>, <span class="math">\(\lim_{n \to \infty} E(X) = \infty\)</span></p>
-<h2 id="transitions">Transitions</h2>
-<p>Branching Processes</p>
-<p>Nonuniform and Growth Models of Random Graphs</p>
-<p>Growth Models</p>
-<p>Small World Graphs</p>
+<h2 id="disappearance-of-isolated-vertices">Disappearance of Isolated Vertices</h2>
+<p>Happens at $ because the giant component has absorbed all small components.</p>
+<p><strong>Proof:</strong> Let <em>x</em> be the number of isolated vertices in G(n,p). Then</p>
+<p><span class="math">\[E(x) = n(1-p)^{n-1}\]</span></p>
+<p>By substituting <span class="math">\(p = c\frac{ln(n)}{n} and taking the limit as \)</span>n $, we end up with:</p>
+<p><span class="math">\[\lim_{n \to \infty} n^{1-c}\]</span></p>
+<p><em>This derivation is missing a step(maybe there's a certain expansion that can be used?)</em></p>
+<p>When c &gt; 1, E(x), or the expected number of isolated vertices goes to 0. When c &lt; 1, E(x) goes to infinity. If E(x) goes to 0, then it follows that almost all graphs have no isolated vertices. Otherwise, if E(x) goes to infinity, have to use the second moment argument to show that almost all graphs have an isolated vertex.</p>
+<h2 id="threshold-for-graph-connectivity">Threshold for Graph Connectivity</h2>
+<h1 id="branching-processesp.80">3.2 Branching Processes(p.80)</h1>
+<p>A <em>branching process</em> is a method for creating a random tree. Read about generating functions.</p>
+<p>By determining the expected number of children for each node, we can determine whether a tree will become extinct(finite number of children).</p>
+<h1 id="nonuniform-and-growth-models-of-random-graphsp.-85">3.3 Nonuniform and Growth Models of Random Graphs(p. 85)</h1>
+<p>Graphs in which the expected degree of the vertices varies. Real-world large graphs tend to have power law degree distributions. The number of vertices of degree is: <span class="math">\(f(d) \lt c/d^\alpha\)</span></p>
+<p>In a graph where half the vertices are degree 1 and half are degree 2, randomly selecting a vertex is equally likely to yield a vertex of degree 1 or 2. However, randomly selecting an edge and then going to its endpoint is twice as likely to select a degree 2 vertex. In general, the probability of reaching a vertex of degree i is proportional to <span class="math">\(i\lambda_i\)</span>, where <span class="math">\(\lambda_i\)</span> is the fraction of vertices that are degree i.</p>
+<h2 id="giant-component-in-random-graphs-with-given-degree-distribution">Giant Component in Random Graphs with Given Degree Distribution</h2>
+<p>There will be a giant component iff <span class="math">\(\sum_{i=1}^{\infty} i(i-2)\lambda_i &gt; 0\)</span>. There is a good intuitive explanation at the bottom of p. 86. Consider starting at a random vertex and then exploring by followind edges. Vertices of degree 2 are neutral with regards to increasing graph size(i.e. enter via one edge and exit via one edge). Vertices of degree i &gt; 2 increase the frontier by i-2 edges. <span class="math">\(i\lambda_i\)</span> is the probability of reaching a vertex of degree i.</p>
+<h1 id="growth-modelsp.87">3.4 Growth Models(p.87)</h1>
+<p>Many real graphs are grown over time from small graphs. There are multiple ways to select which vertices get new edges. Selecting randomly with uniform probability -&gt; without preferential attachment. An alternative approach is with probability proportional to the degree of the vertex -&gt; preferential attachment.</p>
+<p>Without preferential attachment: 1. At each unit of time generate a new vertex 2. Randomly select two vertices and add an edge with probability <span class="math">\(\delta\)</span> a. It is possible to add an edge between two already connected vertices. The graph then becomes a multi-graph.</p>
+<h1 id="small-world-graphsp.-95">3.5 Small World Graphs(p. 95)</h1>
+<p>This sub-chapter would be well-served by a few illustrations. Imagine a 2D lattice of connected vertices. Any vertex is probabilistically also connected to a non-neighboring vertex inversely proportional to the Manhattan distance between those vertices raised to some exponent. I.e.: Probability of long-distance connection from u-&gt;v = <span class="math">\(\frac{1}{d^r(u,v)}\)</span>, where r is a constant, and d(u,v) is the distance between u and v.</p>
 </body>
 </html>
